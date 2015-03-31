@@ -19,4 +19,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #SHAREFOLDER DEFAULT NGINX VHOST
     web.vm.synced_folder ".", "/var/www/"
   end
+
+  config.vm.define :mongo do |mongo|
+    mongo.vm.box = "hashicorp/precise64"
+    mongo.vm.provision "shell", path: "provision-mongo.sh"
+
+    # MongoDB
+    mongo.vm.network "forwarded_port", guest: 27017, host: 27017
+
+    #PRIVATE NETWORK
+    mongo.vm.network "private_network", ip: "192.168.40.12"
+ 
+    #SHAREFOLDER DEFAULT NGINX VHOST
+    #web.vm.synced_folder ".", "/var/www/"
+  end
 end
