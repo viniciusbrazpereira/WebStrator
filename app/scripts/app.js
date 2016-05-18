@@ -8,27 +8,11 @@
  *
  * Main module of the application.
  */
-angular
-  .module('wwwApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+var webstrator = angular.module('wwwApp', ['ngRoute']);
+
+webstrator.config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+      .when('/main', {templateUrl: 'views/main.html', controller: 'MainCtrl'})
+      .when('/about', {templateUrl: 'views/about.html', controller: 'AboutCtrl'})
+      .otherwise({redirectTo: '/login'});
+});

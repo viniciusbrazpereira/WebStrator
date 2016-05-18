@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :web do |web|
-    web.vm.box = "hashicorp/precise64"
+    web.vm.box = "ubuntu/trusty64-juju"
     web.vm.provision "shell", path: "provision-web.sh"
 
     #NGINX
@@ -18,10 +18,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  
     #SHAREFOLDER DEFAULT NGINX VHOST
     web.vm.synced_folder ".", "/var/www/"
+    config.vm.provider "virtualbox" do |vb|
+        # Display the VirtualBox GUI when booting the machine
+        vb.gui = false
+  
+        # Customize the amount of memory on the VM:
+        vb.memory = "516"
+        vb.cpus = 2
+    end
   end
 
   config.vm.define :mongo do |mongo|
-    mongo.vm.box = "hashicorp/precise64"
+    mongo.vm.box = "ubuntu/trusty64-juju"
     mongo.vm.provision "shell", path: "provision-mongo.sh"
 
     # MongoDB

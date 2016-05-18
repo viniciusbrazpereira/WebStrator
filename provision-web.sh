@@ -14,7 +14,7 @@ sudo rm -rf ${VHOST_ANGULAR};
 
 sudo cat << 'EOF' > ${VHOST_ANGULAR}
 server {
-	listen       80;
+	listen       8080;
 	server_name  webstrator.local;
 
 	root         /var/www;
@@ -55,11 +55,11 @@ server {
         root    /var/www;
         index   index.html;
         proxy_pass http://localhost:35729;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
     }
 }
 EOF
