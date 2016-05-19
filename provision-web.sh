@@ -14,7 +14,7 @@ sudo rm -rf ${VHOST_ANGULAR};
 
 sudo cat << 'EOF' > ${VHOST_ANGULAR}
 server {
-	listen       8080;
+	listen       80;
 	server_name  webstrator.local;
 
 	root         /var/www;
